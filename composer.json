@@ -1,6 +1,6 @@
 {
-    "name": "morphp/medas-placeholder",
-    "description": "Medas placeholder",
+    "name": "morphp/medas-html-templates",
+    "description": "Medas HTML templates",
     "authors": [
         {
             "name": "Patrick Morpey",
@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Medas\\Placeholder\\": "src/",
-            "Medas\\PlaceholderTest\\": "tests/"
+            "Medas\\HtmlTemplates\\": "src/",
+            "Medas\\HtmlTemplatesTest\\": "tests/"
         }
     }
 }
