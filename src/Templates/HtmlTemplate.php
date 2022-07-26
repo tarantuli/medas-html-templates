@@ -7,6 +7,7 @@ namespace Medas\HtmlTemplates\Templates;
 class HtmlTemplate
 {
     public \DOMDocument $dom;
+
     public function __construct(
         public string        $template,
         public array         $variables = [],

@@ -35,6 +35,7 @@ class IfHandler extends BaseHandler implements AttributeHandler
     public function handle(HtmlTemplate $template)
     {
         $this->template = $template;
+
         $this->callOnAttributes(
             $template->dom,
             $this->prefix . $this->name(),
