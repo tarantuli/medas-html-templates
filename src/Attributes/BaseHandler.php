@@ -6,19 +6,15 @@ namespace Medas\HtmlTemplates\Attributes;
 
 abstract class BaseHandler
 {
-    protected function findAttributes(\DOMNode $node, string $name, \Closure $closure): void
+    protected function callOnAttributes(\DOMNode $node, string $name, \Closure $closure): void
     {
-        if ($node->hasAttributes()) {
-            foreach ($node->attributes as $attribute) {
-                if ($attribute->name === $name) {
-                    $closure($node, $attribute);
-                }
-            }
+        if ($node->hasAttributes() && $attribute = $node->attributes->getNamedItem($name)) {
+            $closure($node, $attribute);
         }
 
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $childNode) {
-                $this->findAttributes($childNode, $name, $closure);
+                $this->callOnAttributes($childNode, $name, $closure);
             }
         }
     }
