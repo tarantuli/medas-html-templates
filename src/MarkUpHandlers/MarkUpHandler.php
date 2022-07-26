@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Medas\HtmlTemplates\Attributes;
+namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-interface AttributeHandler
+interface MarkUpHandler
 {
-    public function name(): string;
+    public function attributes(): array;
 
     public function priority(): int;
 

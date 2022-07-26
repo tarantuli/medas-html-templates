@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Medas\HtmlTemplates\Attributes;
+namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\ServiceManager\Attributes\Service;
 use Medas\ServiceManager\Cache\CacheManager;
 
 #[Service]
-class AttributeHandlerManager
+class MarkUpHandlerManager
 {
-    /** @var AttributeHandler[] $handlers */
+    /** @var MarkUpHandler[] $handlers */
     private array $handlers;
 
     public function __construct(
@@ -19,10 +19,21 @@ class AttributeHandlerManager
     {
     }
 
-    /** @return AttributeHandler[] */
+    /** @return MarkUpHandler[] */
     public function get(): array
     {
         return $this->cacheManager->get()->get([static::class, 'getHandlers'], fn() => $this->findHandlers());
+    }
+
+    public function getCustomAttributes(): array
+    {
+        $attributes = [];
+
+        foreach ($this->get() as $handler) {
+            $attributes = array_merge($attributes, $handler->attributes());
+        }
+
+        return $attributes;
     }
 
     private function findHandlers(): array
@@ -34,7 +45,7 @@ class AttributeHandlerManager
         }
 
         // Sort handlers with the highest priority to the front
-        usort($this->handlers, fn(AttributeHandler $a, AttributeHandler $b) => -($a->priority() <=> $b->priority()));
+        usort($this->handlers, fn(MarkUpHandler $a, MarkUpHandler $b) => -($a->priority() <=> $b->priority()));
 
         return $this->handlers;
     }
@@ -47,7 +58,7 @@ class AttributeHandlerManager
             return;
         }
 
-        if (!$class->implementsInterface(AttributeHandler::class)) {
+        if (!$class->implementsInterface(MarkUpHandler::class)) {
             return;
         }
 

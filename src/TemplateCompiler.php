@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates;
 
-use Medas\HtmlTemplates\Attributes\AttributeHandlerManager;
+use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\Service;
 
@@ -12,7 +12,7 @@ use Medas\ServiceManager\Attributes\Service;
 class TemplateCompiler
 {
     public function __construct(
-        private readonly AttributeHandlerManager $attributeHandlerManager,
+        private readonly MarkUpHandlerManager $markUpHandlerManager,
     )
     {
     }
@@ -22,8 +22,8 @@ class TemplateCompiler
         $template->dom = new \DOMDocument();
         $template->dom->loadXML($template->template);
 
-        foreach ($this->attributeHandlerManager->get() as $attributeHandler) {
-            $attributeHandler->handle($template);
+        foreach ($this->markUpHandlerManager->get() as $markUpHandler) {
+            $markUpHandler->handle($template);
         }
 
         return trim($template->dom->saveHTML());

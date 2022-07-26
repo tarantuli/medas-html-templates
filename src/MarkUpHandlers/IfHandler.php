@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\HtmlTemplates\Attributes;
+namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
 use Medas\HtmlTemplates\StringEvaluator;
@@ -10,7 +10,7 @@ use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\{ConfigValue, Service};
 
 #[Service]
-class IfHandler extends BaseHandler implements AttributeHandler
+class IfHandler extends BaseHandler implements MarkUpHandler
 {
     private HtmlTemplate $template;
 
@@ -22,9 +22,9 @@ class IfHandler extends BaseHandler implements AttributeHandler
     {
     }
 
-    public function name(): string
+    public function attributes(): array
     {
-        return 'if';
+        return [$this->prefix . 'if'];
     }
 
     public function priority(): int
@@ -38,7 +38,7 @@ class IfHandler extends BaseHandler implements AttributeHandler
 
         $this->callOnAttributes(
             $template->dom,
-            $this->prefix . $this->name(),
+            $this->prefix . 'if',
             $this->processAttribute(...)
         );
     }
