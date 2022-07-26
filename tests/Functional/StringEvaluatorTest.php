@@ -24,14 +24,14 @@ class StringEvaluatorTest extends BaseTest
 
         $tests = [
             'true' => '1',
-            'false' => '0',
+            'false' => '',
             'null' => '',
             '$trueVariable' => '1',
-            '$falseVariable' => '0',
+            '$falseVariable' => '',
             '$nullVariable' => '',
             '$integerVariable' => '10',
             '$stringVariable' => 'text',
-            '$object.property' => 'property value',
+            '$object->property' => 'property value',
         ];
 
         $evaluator = service(StringEvaluator::class);
@@ -41,7 +41,22 @@ class StringEvaluatorTest extends BaseTest
         }
     }
 
+    public function testUndefinedVariableInExpression(): void
+    {
+        $evaluator = service(StringEvaluator::class);
+        self::expectWarning();
+        $evaluator->evaluate('$undefinedVariable');
+    }
+
+    public function testReturnInExpression(): void
+    {
+        $evaluator = service(StringEvaluator::class);
+        self::expectException(\ParseError::class);
+        $evaluator->evaluate('return 10');
+    }
+
     public function testIsTruthy(): void
+
     {
         $tests = [
             'true' => true,
@@ -52,7 +67,7 @@ class StringEvaluatorTest extends BaseTest
             'false' => false,
             'null' => false,
             '' => false,
-            'string' => false,
+            '"string"' => true,
         ];
 
         $evaluator = service(StringEvaluator::class);
