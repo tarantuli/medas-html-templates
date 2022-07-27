@@ -31,7 +31,14 @@ abstract class BaseHandler
         }
 
         if ($node->hasChildNodes()) {
+            // Work on a copy of the children due to DOM manipulations
+            $children = [];
+
             foreach ($node->childNodes as $childNode) {
+                $children[] = $childNode;
+            }
+
+            foreach ($children as $childNode) {
                 if ($childNode->nodeType === XML_TEXT_NODE) {
                     $oldText = $childNode->textContent;
                     $newText = preg_replace($search, $replace, $oldText);
