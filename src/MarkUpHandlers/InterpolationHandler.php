@@ -26,7 +26,7 @@ class InterpolationHandler implements MarkUpHandler
 
     public function priority(): int
     {
-        return 0;
+        return 1;
     }
 
     public function handle(HtmlTemplate $template): void

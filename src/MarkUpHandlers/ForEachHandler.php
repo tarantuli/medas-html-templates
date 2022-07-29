@@ -34,7 +34,7 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
         return 3;
     }
 
-    public function handle(HtmlTemplate $template)
+    public function handle(HtmlTemplate $template): void
     {
         $this->template = $template;
         $this->callOnAttributes(

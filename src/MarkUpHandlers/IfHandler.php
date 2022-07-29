@@ -32,7 +32,7 @@ class IfHandler extends BaseHandler implements MarkUpHandler
         return 2;
     }
 
-    public function handle(HtmlTemplate $template)
+    public function handle(HtmlTemplate $template): void
     {
         $this->template = $template;
 

@@ -12,5 +12,5 @@ interface MarkUpHandler
 
     public function priority(): int;
 
-    public function handle(HtmlTemplate $template);
+    public function handle(HtmlTemplate $template): void;
 }
