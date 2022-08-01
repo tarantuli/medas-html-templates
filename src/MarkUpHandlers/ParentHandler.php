@@ -35,7 +35,7 @@ class ParentHandler implements MarkUpHandler
         $placeholder = $parentDom->getElementsByTagName($template->parentPlaceholderTag)->item(0);
 
         if (!$placeholder) {
-            throw new PlaceholderTagNotFoundException($template->parentPlaceholderTag);
+            throw new PlaceholderTagNotFoundException($template->parent, $template->parentPlaceholderTag);
         }
 
         $placeholder->parentNode->replaceChild($template->dom, $placeholder);
