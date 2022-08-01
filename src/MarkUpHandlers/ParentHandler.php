@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
+use Medas\HtmlTemplates\Exceptions\PlaceholderTagNotFoundException;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\Service;
 
@@ -32,6 +33,10 @@ class ParentHandler implements MarkUpHandler
 
         // Find the placeholder and replace it by the template DOM
         $placeholder = $parentDom->getElementsByTagName($template->parentPlaceholderTag)->item(0);
+
+        if (!$placeholder) {
+            throw new PlaceholderTagNotFoundException($template->parentPlaceholderTag);
+        }
 
         $placeholder->parentNode->replaceChild($template->dom, $placeholder);
 

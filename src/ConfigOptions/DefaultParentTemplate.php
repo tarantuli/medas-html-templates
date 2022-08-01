@@ -37,7 +37,8 @@ class DefaultParentTemplate implements ConfigOption, Validator, Unserializer
 
     public function unserialize(string $value): object
     {
-        return service($value);
+        /** @noinspection PhpUndefinedMethodInspection */
+        return $value::instance();
     }
 
     public function hasDefault(): bool
