@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates;
 
+use Medas\ConfigOptions\Attributes\ConfigValue;
 use Medas\HtmlTemplates\ConfigOptions\DefaultParentTemplate;
 use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Attributes\ConfigValue;
 use Medas\ServiceManager\Attributes\Service;
 
 #[Service]

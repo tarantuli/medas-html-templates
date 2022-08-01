@@ -4,28 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93485f4c0ca05016bdf7aa4764abba65",
+    "content-hash": "477496f460d1a6e2e7bbe7cec2d8df27",
     "packages": [
         {
             "name": "graham-campbell/result-type",
-            "version": "v1.0.4",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Result-Type.git",
-                "reference": "0690bde05318336c7221785f2a932467f98b64ca"
+                "reference": "a878d45c1914464426dc94da61c9e1d36ae262a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Result-Type/zipball/0690bde05318336c7221785f2a932467f98b64ca",
-                "reference": "0690bde05318336c7221785f2a932467f98b64ca",
+                "url": "https://api.github.com/repos/GrahamCampbell/Result-Type/zipball/a878d45c1914464426dc94da61c9e1d36ae262a8",
+                "reference": "a878d45c1914464426dc94da61c9e1d36ae262a8",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0 || ^8.0",
-                "phpoption/phpoption": "^1.8"
+                "php": "^7.2.5 || ^8.0",
+                "phpoption/phpoption": "^1.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.5.14 || ^7.5.20 || ^8.5.19 || ^9.5.8"
+                "phpunit/phpunit": "^8.5.28 || ^9.5.21"
             },
             "type": "library",
             "autoload": {
@@ -54,7 +54,7 @@
             ],
             "support": {
                 "issues": "https://github.com/GrahamCampbell/Result-Type/issues",
-                "source": "https://github.com/GrahamCampbell/Result-Type/tree/v1.0.4"
+                "source": "https://github.com/GrahamCampbell/Result-Type/tree/v1.1.0"
             },
             "funding": [
                 {
@@ -66,7 +66,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-21T21:41:47+00:00"
+            "time": "2022-07-30T15:56:11+00:00"
         },
         {
             "name": "morphp/medas-cache",
@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-config-manager.git",
-                "reference": "f65dacc9e5898a2784a11b79aa874b6825342df8"
+                "reference": "ce82051fc8c2fa1f72cef924008d01631a3d0bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-config-manager/zipball/f65dacc9e5898a2784a11b79aa874b6825342df8",
-                "reference": "f65dacc9e5898a2784a11b79aa874b6825342df8",
+                "url": "https://api.github.com/repos/tarantuli/medas-config-manager/zipball/ce82051fc8c2fa1f72cef924008d01631a3d0bb9",
+                "reference": "ce82051fc8c2fa1f72cef924008d01631a3d0bb9",
                 "shasum": ""
             },
             "require": {
@@ -152,7 +152,49 @@
                 "source": "https://github.com/tarantuli/medas-config-manager/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-config-manager/issues"
             },
-            "time": "2022-07-29T13:19:33+00:00"
+            "time": "2022-08-01T10:46:48+00:00"
+        },
+        {
+            "name": "morphp/medas-config-options",
+            "version": "dev-dev",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:tarantuli/medas-config-options.git",
+                "reference": "a9685e3b3b0fefbfe4a7718d88b5ec4af7110e14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-config-options/zipball/a9685e3b3b0fefbfe4a7718d88b5ec4af7110e14",
+                "reference": "a9685e3b3b0fefbfe4a7718d88b5ec4af7110e14",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-config-manager": "dev-dev",
+                "morphp/medas-service-manager": "dev-dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\ConfigOptions\\": "src/",
+                    "Medas\\ConfigOptionsTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas config options",
+            "support": {
+                "source": "https://github.com/tarantuli/medas-config-options/tree/dev",
+                "issues": "https://github.com/tarantuli/medas-config-options/issues"
+            },
+            "time": "2022-08-01T12:57:09+00:00"
         },
         {
             "name": "morphp/medas-console",
@@ -293,12 +335,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-http-request-handler.git",
-                "reference": "f12de8b784f7cfea9862d7e8db54bfaf10151fa1"
+                "reference": "bcbc5e2af593727dbbdaf56c2725a1b9fb4a3057"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-http-request-handler/zipball/f12de8b784f7cfea9862d7e8db54bfaf10151fa1",
-                "reference": "f12de8b784f7cfea9862d7e8db54bfaf10151fa1",
+                "url": "https://api.github.com/repos/tarantuli/medas-http-request-handler/zipball/bcbc5e2af593727dbbdaf56c2725a1b9fb4a3057",
+                "reference": "bcbc5e2af593727dbbdaf56c2725a1b9fb4a3057",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +369,7 @@
                 "source": "https://github.com/tarantuli/medas-http-request-handler/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-http-request-handler/issues"
             },
-            "time": "2022-07-27T14:37:58+00:00"
+            "time": "2022-07-29T14:17:00+00:00"
         },
         {
             "name": "morphp/medas-routing",
@@ -335,17 +377,18 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-routing.git",
-                "reference": "fbbfa16f3369143afa66ad448ef0db21d2392b0a"
+                "reference": "1ce2d98036a0c6c8ea51740fcffda4d7649ca54c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-routing/zipball/fbbfa16f3369143afa66ad448ef0db21d2392b0a",
-                "reference": "fbbfa16f3369143afa66ad448ef0db21d2392b0a",
+                "url": "https://api.github.com/repos/tarantuli/medas-routing/zipball/1ce2d98036a0c6c8ea51740fcffda4d7649ca54c",
+                "reference": "1ce2d98036a0c6c8ea51740fcffda4d7649ca54c",
                 "shasum": ""
             },
             "require": {
                 "morphp/medas-cache": "dev-dev",
                 "morphp/medas-config-manager": "dev-dev",
+                "morphp/medas-config-options": "dev-dev",
                 "morphp/medas-console": "dev-dev",
                 "morphp/medas-service-manager": "dev-dev"
             },
@@ -371,7 +414,7 @@
                 "source": "https://github.com/tarantuli/medas-routing/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-routing/issues"
             },
-            "time": "2022-07-25T10:23:50+00:00"
+            "time": "2022-08-01T13:31:17+00:00"
         },
         {
             "name": "morphp/medas-service-manager",
@@ -379,12 +422,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-service-manager.git",
-                "reference": "d2284d2149d209a1ac8d8dd3ee9961c799409b49"
+                "reference": "e47ace0cb4f59dcfe9106b40cc23ad7cbdecabe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-service-manager/zipball/d2284d2149d209a1ac8d8dd3ee9961c799409b49",
-                "reference": "d2284d2149d209a1ac8d8dd3ee9961c799409b49",
+                "url": "https://api.github.com/repos/tarantuli/medas-service-manager/zipball/e47ace0cb4f59dcfe9106b40cc23ad7cbdecabe3",
+                "reference": "e47ace0cb4f59dcfe9106b40cc23ad7cbdecabe3",
                 "shasum": ""
             },
             "require": {
@@ -419,33 +462,37 @@
                 "source": "https://github.com/tarantuli/medas-service-manager/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-service-manager/issues"
             },
-            "time": "2022-07-29T13:27:26+00:00"
+            "time": "2022-08-01T12:51:40+00:00"
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.8.1",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15"
+                "reference": "dc5ff11e274a90cc1c743f66c9ad700ce50db9ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15",
-                "reference": "eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/dc5ff11e274a90cc1c743f66c9ad700ce50db9ab",
+                "reference": "dc5ff11e274a90cc1c743f66c9ad700ce50db9ab",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0 || ^8.0"
+                "php": "^7.2.5 || ^8.0"
             },
             "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.4.1",
-                "phpunit/phpunit": "^6.5.14 || ^7.5.20 || ^8.5.19 || ^9.5.8"
+                "bamarni/composer-bin-plugin": "^1.8",
+                "phpunit/phpunit": "^8.5.28 || ^9.5.21"
             },
             "type": "library",
             "extra": {
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": true
+                },
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -478,7 +525,7 @@
             ],
             "support": {
                 "issues": "https://github.com/schmittjoh/php-option/issues",
-                "source": "https://github.com/schmittjoh/php-option/tree/1.8.1"
+                "source": "https://github.com/schmittjoh/php-option/tree/1.9.0"
             },
             "funding": [
                 {
@@ -490,7 +537,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-04T23:24:31+00:00"
+            "time": "2022-07-30T15:51:26+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3235,7 +3282,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "morphp/medas-service-manager": 20,
-        "morphp/medas-config-manager": 20,
+        "morphp/medas-config-options": 20,
         "morphp/medas-http-request-handler": 20
     },
     "prefer-stable": true,

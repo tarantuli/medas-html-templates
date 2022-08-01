@@ -12,7 +12,7 @@
     "prefer-stable": true,
     "require": {
         "morphp/medas-service-manager": "dev-dev",
-        "morphp/medas-config-manager": "dev-dev",
+        "morphp/medas-config-options": "dev-dev",
         "morphp/medas-http-request-handler": "dev-dev",
         "ext-dom": "*"
     },
