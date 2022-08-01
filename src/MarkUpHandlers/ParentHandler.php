@@ -38,7 +38,9 @@ class ParentHandler implements MarkUpHandler
             throw new PlaceholderTagNotFoundException($template->parent, $template->parentPlaceholderTag);
         }
 
-        $placeholder->parentNode->replaceChild($template->dom, $placeholder);
+        // Import the root element from the original DOM and then replace the placeholder in the parent
+        $importedNode = $parentDom->importNode($template->dom->documentElement, true);
+        $placeholder->parentNode->replaceChild($importedNode, $placeholder);
 
         // From now on, use the parent DOM document as the template
         $template->dom = $parentDom;
