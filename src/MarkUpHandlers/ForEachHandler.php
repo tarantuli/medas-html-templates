@@ -17,9 +17,8 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
 
     public function __construct(
         #[ConfigValue(AttributePrefix::class)]
-        private readonly string               $prefix,
-        private readonly StringEvaluator      $stringEvaluator,
-        private readonly MarkUpHandlerManager $markUpHandlerManager,
+        private readonly string          $prefix,
+        private readonly StringEvaluator $stringEvaluator,
     )
     {
     }
@@ -60,7 +59,6 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
         }
 
         $search = '/' . preg_quote($asAttribute->value, '/') . '\b/';
-        $customAttributes = $this->markUpHandlerManager->getCustomAttributes();
 
         foreach ($iterator as $value) {
             $variableName = 'a' . bin2hex(random_bytes(8));
@@ -73,8 +71,7 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
             $this->replaceVariableInText(
                 $newBlock,
                 $search,
-                '$' . $variableName,
-                $customAttributes
+                '$' . $variableName
             );
 
             $element->parentNode->insertBefore($newBlock, $element);

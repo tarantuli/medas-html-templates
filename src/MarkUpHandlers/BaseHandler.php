@@ -19,14 +19,11 @@ abstract class BaseHandler
         }
     }
 
-    protected function replaceVariableInText(\DOMNode $node, string $search, string $replace, array $attributeNames = []): void
+    protected function replaceVariableInText(\DOMNode $node, string $search, string $replace): void
     {
         if ($node->hasAttributes()) {
-            foreach ($attributeNames as $attributeName) {
-                /** @var \DOMAttr $attribute */
-                if ($attribute = $node->attributes->getNamedItem($attributeName)) {
-                    $attribute->value = preg_replace($search, $replace, $attribute->value);
-                }
+            foreach ($node->attributes as $attribute) {
+                $attribute->value = $this->replaceTextInExpressions($search, $replace, $attribute->value);
             }
         }
 
@@ -41,14 +38,31 @@ abstract class BaseHandler
             foreach ($children as $childNode) {
                 if ($childNode->nodeType === XML_TEXT_NODE) {
                     $oldText = $childNode->textContent;
-                    $newText = preg_replace($search, $replace, $oldText);
+                    $newText = $this->replaceTextInExpressions($search, $replace, $oldText);
                     $newTextNode = $node->ownerDocument->createTextNode($newText);
                     $node->replaceChild($newTextNode, $childNode);
                 }
                 else {
-                    $this->replaceVariableInText($childNode, $search, $replace, $attributeNames);
+                    $this->replaceVariableInText($childNode, $search, $replace);
                 }
             }
         }
+    }
+
+    private function replaceTextInExpressions(string $pattern, string $replace, mixed $subject): string
+    {
+        if (!preg_match_all('/{{.+?}}/', $subject, $expressions)) {
+            return $subject;
+        }
+
+        foreach ($expressions[0] as $expression) {
+            $subject = str_replace(
+                $expression,
+                preg_replace($pattern, $replace, $expression),
+                $subject
+            );
+        }
+
+        return $subject;
     }
 }

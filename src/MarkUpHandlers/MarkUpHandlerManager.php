@@ -25,17 +25,6 @@ class MarkUpHandlerManager
         return $this->cacheManager->get()->get([static::class, 'getHandlers'], fn() => $this->findHandlers());
     }
 
-    public function getCustomAttributes(): array
-    {
-        $attributes = [];
-
-        foreach ($this->get() as $handler) {
-            $attributes = array_merge($attributes, $handler->attributes());
-        }
-
-        return $attributes;
-    }
-
     private function findHandlers(): array
     {
         $this->handlers = [];
