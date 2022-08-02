@@ -6,6 +6,7 @@ namespace Medas\HtmlTemplates;
 
 use Medas\ConfigOptions\Attributes\ConfigValue;
 use Medas\HtmlTemplates\ConfigOptions\DefaultParentTemplate;
+use Medas\HtmlTemplates\Exceptions\InvalidTemplateException;
 use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\Service;
@@ -26,7 +27,12 @@ class TemplateCompiler
         $this->setParentTemplate($template);
 
         $template->dom = new \DOMDocument();
-        $template->dom->loadXML($template->template);
+        try {
+            $template->dom->loadXML($template->template);
+        }
+        catch (\Exception) {
+            throw new InvalidTemplateException($template->template);
+        }
 
         $this->applyMarkUpHandlers($template);
 

@@ -38,6 +38,12 @@ class InterpolationHandler implements MarkUpHandler
 
     private function processNode(\DOMNode $node): void
     {
+        if ($node->hasAttributes()) {
+            foreach ($node->attributes as $attribute) {
+                $this->parseAttribute($attribute);
+            }
+        }
+
         if (!$node->hasChildNodes()) {
             return;
         }
@@ -53,20 +59,34 @@ class InterpolationHandler implements MarkUpHandler
 
     }
 
-    private function parseTextNode(\DOMNode $parentNode, \DOMNode $childNode)
+    private function parseAttribute(\DOMAttr $attribute): void
+    {
+        if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $attribute->value, $matches, PREG_SET_ORDER)) {
+            return;
+        }
+
+        $attribute->value = $this->evaluateMatches($matches, $attribute->value);
+    }
+
+    private function parseTextNode(\DOMNode $parentNode, \DOMNode $childNode): void
     {
         if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $childNode->textContent, $matches, PREG_SET_ORDER)) {
             return;
         }
 
-        $newText = $childNode->textContent;
+        $newText = $this->evaluateMatches($matches, $childNode->textContent);
 
+        $newTextNode = $parentNode->ownerDocument->createTextNode($newText);
+        $parentNode->replaceChild($newTextNode, $childNode);
+    }
+
+    private function evaluateMatches($matches, mixed $newText): mixed
+    {
         foreach ($matches as $match) {
             $replace = $this->stringEvaluator->evaluate($match['expression'], $this->template->variables);
             $newText = str_replace($match[0], (string) $replace, $newText);
         }
 
-        $newTextNode = $parentNode->ownerDocument->createTextNode($newText);
-        $parentNode->replaceChild($newTextNode, $childNode);
+        return $newText;
     }
 }
