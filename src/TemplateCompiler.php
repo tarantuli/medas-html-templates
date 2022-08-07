@@ -27,13 +27,8 @@ class TemplateCompiler
         $this->setParentTemplate($template);
 
         $template->dom = new \DOMDocument();
-        try {
-            $template->dom->loadXML($template->template);
-        }
-        catch (\Exception) {
-            throw new InvalidTemplateException($template->template);
-        }
 
+        $this->loadTemplateXml($template);
         $this->applyMarkUpHandlers($template);
 
         return trim($template->dom->saveHTML());
@@ -50,6 +45,27 @@ class TemplateCompiler
     {
         foreach ($this->markUpHandlerManager->get() as $markUpHandler) {
             $markUpHandler->handle($template);
+        }
+    }
+
+    private function loadTemplateXml(HtmlTemplate $template): void
+    {
+        try {
+            $template->dom->loadXML($template->template);
+        }
+        catch (\Exception $e) {
+            if (str_contains($e->getMessage(), 'Extra content at the end of the document')) {
+                // Try to make non-rooted code valid by encapsulating all in a temporary root element
+                try {
+                    $template->dom->loadXML('<null>' . $template->template . '</null>');
+                }
+                catch (\Exception) {
+                    throw new InvalidTemplateException($template->template);
+                }
+            }
+            else {
+                throw new InvalidTemplateException($template->template);
+            }
         }
     }
 }
