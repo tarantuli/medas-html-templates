@@ -12,7 +12,7 @@ function routeTo(string $name, array $arguments = []): string
     $handler = service(HandlerManager::class)->findByName($name);
 
     if ($handler instanceof RoutedHandler) {
-        $handler->endpoint($arguments);
+        return $handler->endpoint($arguments);
     }
 
     throw new NoRouteWithNameFoundException($name);
