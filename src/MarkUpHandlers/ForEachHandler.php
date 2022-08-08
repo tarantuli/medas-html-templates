@@ -30,7 +30,7 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
 
     public function priority(): int
     {
-        return 3;
+        return -200;
     }
 
     public function handle(HtmlTemplate $template): void

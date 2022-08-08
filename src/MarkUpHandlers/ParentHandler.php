@@ -18,7 +18,7 @@ class ParentHandler implements MarkUpHandler
 
     public function priority(): int
     {
-        return 0;
+        return 100;
     }
 
     public function handle(HtmlTemplate $template): void
@@ -44,5 +44,8 @@ class ParentHandler implements MarkUpHandler
 
         // From now on, use the parent DOM document as the template
         $template->dom = $parentDom;
+
+        // Combine the variables
+        $template->variables = array_merge($template->parent->variables, $template->variables);
     }
 }

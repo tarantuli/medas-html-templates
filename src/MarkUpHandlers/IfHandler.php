@@ -30,7 +30,7 @@ class IfHandler extends BaseHandler implements MarkUpHandler
 
     public function priority(): int
     {
-        return 2;
+        return -300;
     }
 
     public function handle(HtmlTemplate $template): void
