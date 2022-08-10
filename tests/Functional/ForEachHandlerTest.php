@@ -37,7 +37,13 @@ class ForEachHandlerTest extends BaseTest
             ['numbers' => [1, 2, 3]]
         );
 
-        self::assertEquals('<div>1</div><div>2</div><div>3</div>', $this->compile($template));
+        $expected = <<<'HTML'
+<div>1</div>
+<div>2</div>
+<div>3</div>
+HTML;
+
+        self::assertEquals($expected, $this->compile($template));
     }
 
     public function testBasicLoopInAttributes(): void
@@ -47,10 +53,19 @@ class ForEachHandlerTest extends BaseTest
             ['numbers' => [1, 2, 3]]
         );
 
-        self::assertEquals(
-            '<div><a href="1"></a></div><div><a href="2"></a></div><div><a href="3"></a></div>',
-            $this->compile($template)
-        );
+        $expected = <<<'HTML'
+<div>
+  <a href="1"/>
+</div>
+<div>
+  <a href="2"/>
+</div>
+<div>
+  <a href="3"/>
+</div>
+HTML;
+
+        self::assertEquals($expected, $this->compile($template));
     }
 
     public function testReplaceOnlyWithinBraces(): void
@@ -60,9 +75,12 @@ class ForEachHandlerTest extends BaseTest
             ['numbers' => [1, 2, 3]]
         );
 
-        self::assertEquals(
-            '<div>$number = 1</div><div>$number = 2</div><div>$number = 3</div>',
-            $this->compile($template)
-        );
+        $expected = <<<'HTML'
+<div>$number = 1</div>
+<div>$number = 2</div>
+<div>$number = 3</div>
+HTML;
+
+        self::assertEquals($expected, $this->compile($template));
     }
 }

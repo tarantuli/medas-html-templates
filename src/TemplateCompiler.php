@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates;
 
 use Medas\ConfigOptions\Attributes\ConfigValue;
+use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
 use Medas\HtmlTemplates\ConfigOptions\DefaultParentTemplate;
 use Medas\HtmlTemplates\Exceptions\InvalidTemplateException;
 use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
@@ -18,6 +19,8 @@ class TemplateCompiler
         private readonly MarkUpHandlerManager $markUpHandlerManager,
         #[ConfigValue(DefaultParentTemplate::class)]
         private readonly HtmlTemplate|null    $defaultParent,
+        #[ConfigValue(AttributePrefix::class)]
+        private readonly string               $prefix,
     )
     {
     }
@@ -31,7 +34,7 @@ class TemplateCompiler
         $this->loadTemplateXml($template);
         $this->applyMarkUpHandlers($template);
 
-        return trim($template->dom->saveHTML());
+        return $this->getXml($template->dom);
     }
 
     private function setParentTemplate(HtmlTemplate $template): void
@@ -50,6 +53,9 @@ class TemplateCompiler
 
     private function loadTemplateXml(HtmlTemplate $template): void
     {
+        $template->dom->preserveWhiteSpace = false;
+        $template->dom->formatOutput = true;
+
         try {
             $template->dom->loadXML($template->template);
         }
@@ -57,7 +63,7 @@ class TemplateCompiler
             if (str_contains($e->getMessage(), 'Extra content at the end of the document')) {
                 // Try to make non-rooted code valid by encapsulating all in a temporary root element
                 try {
-                    $template->dom->loadXML('<null>' . $template->template . '</null>');
+                    $template->dom->loadXML('<' . $this->prefix . 'container>' . $template->template . '</' . $this->prefix . 'container>');
                 }
                 catch (\Exception) {
                     throw new InvalidTemplateException($template->template);
@@ -67,5 +73,16 @@ class TemplateCompiler
                 throw new InvalidTemplateException($template->template);
             }
         }
+    }
+
+    private function getXml(\DOMDocument $document): string
+    {
+        $result = '';
+
+        foreach ($document->childNodes as $childNode) {
+            $result .= $document->saveXML($childNode) . "\n";
+        }
+
+        return trim($result);
     }
 }

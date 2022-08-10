@@ -77,7 +77,12 @@ class InterpolationHandler implements MarkUpHandler
         $newText = $this->evaluateMatches($matches, $childNode->textContent);
 
         $fragment = $parentNode->ownerDocument->createDocumentFragment();
-        $fragment->appendXML($newText);
+        try {
+            $fragment->appendXML($newText);
+        }
+        catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage() . ' in ' . $newText);
+        }
         $parentNode->replaceChild($fragment, $childNode);
     }
 
