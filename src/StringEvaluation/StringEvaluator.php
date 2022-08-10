@@ -2,15 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Medas\HtmlTemplates;
+namespace Medas\HtmlTemplates\StringEvaluation;
 
 use Medas\ServiceManager\Attributes\Service;
 
 #[Service]
 class StringEvaluator
 {
+    public function __construct(
+        private readonly ServiceReferenceNormalizer $serviceReferenceNormalizer,
+    )
+    {
+    }
+
     public function evaluate(string $expression, array $variables = []): mixed
     {
+        $expression = $this->serviceReferenceNormalizer->normalize($expression);
+
         // Define the variables in this local scope
         foreach ($variables as $name => $value) {
             $$name = $value;

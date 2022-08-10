@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\ConfigOptions\Attributes\ConfigValue;
 use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
-use Medas\HtmlTemplates\StringEvaluator;
+use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\Service;
 

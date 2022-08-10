@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplatesTest\Functional;
 
-use Medas\HtmlTemplates\StringEvaluator;
+use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 
 class StringEvaluatorTest extends BaseTest
 {
@@ -44,7 +44,7 @@ class StringEvaluatorTest extends BaseTest
     public function testUndefinedVariableInExpression(): void
     {
         $evaluator = service(StringEvaluator::class);
-        self::expectWarning();
+        self::expectException(\ErrorException::class);
         $evaluator->evaluate('$undefinedVariable');
     }
 

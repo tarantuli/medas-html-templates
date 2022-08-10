@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
-use Medas\HtmlTemplates\StringEvaluator;
+use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use Medas\ServiceManager\Attributes\Service;
 
