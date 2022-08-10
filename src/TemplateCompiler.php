@@ -80,7 +80,7 @@ class TemplateCompiler
         $result = '';
 
         foreach ($document->childNodes as $childNode) {
-            $result .= $document->saveXML($childNode) . "\n";
+            $result .= $document->saveXML($childNode, LIBXML_NOEMPTYTAG) . "\n";
         }
 
         return trim($result);
