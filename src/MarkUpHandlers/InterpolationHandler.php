@@ -76,8 +76,9 @@ class InterpolationHandler implements MarkUpHandler
 
         $newText = $this->evaluateMatches($matches, $childNode->textContent);
 
-        $newTextNode = $parentNode->ownerDocument->createTextNode($newText);
-        $parentNode->replaceChild($newTextNode, $childNode);
+        $fragment = $parentNode->ownerDocument->createDocumentFragment();
+        $fragment->appendXML($newText);
+        $parentNode->replaceChild($fragment, $childNode);
     }
 
     private function evaluateMatches($matches, mixed $newText): mixed
