@@ -5,13 +5,13 @@ declare(strict_types=1);
 // This file should be in the global namespace
 
 use Medas\HtmlTemplates\Exceptions\NoRouteWithNameFoundException;
-use Medas\Routing\{HandlerManager, Handlers\RoutedHandler};
+use Medas\ServiceManager\RequestHandling\{GeneratesEndpoint, RequestHandlerManager};
 
 function routeTo(string $name, array $arguments = []): string
 {
-    $handler = service(HandlerManager::class)->findByName($name);
+    $handler = service(RequestHandlerManager::class)->findByName($name);
 
-    if ($handler instanceof RoutedHandler) {
+    if ($handler instanceof GeneratesEndpoint) {
         return $handler->endpoint($arguments);
     }
 

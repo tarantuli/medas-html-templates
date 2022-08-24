@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
-use Medas\ConfigOptions\{ConfigGroup, ConfigOption};
 use Medas\ServiceManager\AsSingleton;
 use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\ConfigOptions\{ConfigGroup, ConfigOption};
 
 #[Service]
 class AttributePrefix implements ConfigOption

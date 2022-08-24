@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates;
 
-use Medas\ConfigOptions\ConfigOptionsPackage;
 use Medas\ServiceManager\{AsSingleton, BasePackage};
-use Medas\Routing\RoutingPackage;
 
 class HtmlTemplatesPackage extends BasePackage
 {
@@ -15,8 +13,6 @@ class HtmlTemplatesPackage extends BasePackage
     public function dependencies(): array
     {
         return $this->dependenciesByClass([
-            ConfigOptionsPackage::class,
-            RoutingPackage::class,
         ]);
     }
 

@@ -35,6 +35,6 @@ class InterpolationHandlerTest extends BaseTest
             ['link' => '/path/to/site']
         );
 
-        self::assertEquals('<a href="/path/to/site"/>', $this->compile($template));
+        self::assertEquals('<a href="/path/to/site"></a>', $this->compile($template));
     }
 }

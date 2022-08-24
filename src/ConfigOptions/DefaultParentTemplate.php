@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
-use Medas\ConfigOptions\{ConfigGroup, ConfigOption};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
 use Medas\ServiceManager\AsSingleton;
 use Medas\ServiceManager\Attributes\Service;
-use Medas\ServiceManager\Interfaces\Unserializer;
-use Medas\ServiceManager\Interfaces\Validator;
+use Medas\ServiceManager\ConfigOptions\{ConfigGroup, ConfigOption};
+use Medas\ServiceManager\Values\Interfaces\Unserializer;
+use Medas\ServiceManager\Values\Interfaces\Validator;
 
 #[Service]
 class DefaultParentTemplate implements ConfigOption, Validator, Unserializer
