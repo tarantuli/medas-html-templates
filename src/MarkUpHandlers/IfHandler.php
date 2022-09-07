@@ -23,11 +23,6 @@ class IfHandler extends BaseHandler implements MarkUpHandler
     {
     }
 
-    public function attributes(): array
-    {
-        return [$this->prefix . 'if'];
-    }
-
     public function priority(): int
     {
         return -300;

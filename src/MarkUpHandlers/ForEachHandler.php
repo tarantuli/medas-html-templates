@@ -23,11 +23,6 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
     {
     }
 
-    public function attributes(): array
-    {
-        return [$this->prefix . 'foreach', $this->prefix . 'as'];
-    }
-
     public function priority(): int
     {
         return -200;

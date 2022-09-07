@@ -11,11 +11,6 @@ use Medas\ServiceManager\Attributes\Service;
 #[Service]
 class ParentHandler implements MarkUpHandler
 {
-    public function attributes(): array
-    {
-        return [];
-    }
-
     public function priority(): int
     {
         return 100;

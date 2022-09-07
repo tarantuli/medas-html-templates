@@ -19,11 +19,6 @@ class ContainerHandler extends BaseHandler implements MarkUpHandler
     {
     }
 
-    public function attributes(): array
-    {
-        return [];
-    }
-
     public function priority(): int
     {
         return -500;

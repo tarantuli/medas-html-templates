@@ -8,8 +8,6 @@ use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
 interface MarkUpHandler
 {
-    public function attributes(): array;
-
     public function priority(): int;
 
     public function handle(HtmlTemplate $template): void;

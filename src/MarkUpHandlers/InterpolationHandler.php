@@ -19,11 +19,6 @@ class InterpolationHandler implements MarkUpHandler
     {
     }
 
-    public function attributes(): array
-    {
-        return [];
-    }
-
     public function priority(): int
     {
         return -400;
@@ -56,7 +51,6 @@ class InterpolationHandler implements MarkUpHandler
                 $this->processNode($childNode);
             }
         }
-
     }
 
     private function parseAttribute(\DOMAttr $attribute): void
