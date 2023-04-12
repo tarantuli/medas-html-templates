@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-class ForEachHandlerTest extends BaseTest
+class ForEachHandlerTest extends BaseTestClass
 {
     public function testNoAsAttribute(): void
     {

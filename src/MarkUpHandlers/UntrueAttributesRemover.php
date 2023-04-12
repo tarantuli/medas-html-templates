@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class UntrueAttributesRemover implements MarkUpHandler

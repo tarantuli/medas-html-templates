@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-class UntrueAttributesRemoverTest extends BaseTest
+class UntrueAttributesRemoverTest extends BaseTestClass
 {
     public function testRemoveUntrueChecked(): void
     {

@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\HtmlTemplates\Exceptions\PlaceholderTagNotFoundException;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class ParentHandler implements MarkUpHandler

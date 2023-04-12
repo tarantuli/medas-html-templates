@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-class InterpolationHandlerTest extends BaseTest
+class InterpolationHandlerTest extends BaseTestClass
 {
     public function testBasicTextNode(): void
     {

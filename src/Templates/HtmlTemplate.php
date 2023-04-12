@@ -13,7 +13,7 @@ class HtmlTemplate
         public array             $variables = [],
         public Settings|null     $settings = null,
         public HtmlTemplate|null $parent = null,
-        public string $parentPlaceholderTag = 'children'
+        public string            $parentPlaceholderTag = 'children'
     )
     {
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
+use Medas\Core\Attributes\ConfigValue;
 use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Attributes\Service;
-use Medas\ServiceManager\ConfigOptions\ConfigValue;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class ContainerHandler extends BaseHandler implements MarkUpHandler

@@ -8,10 +8,10 @@ use Medas\HtmlTemplates\TemplateCompiler;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 use PHPUnit\Framework\TestCase;
 
-abstract class BaseTest extends TestCase
+abstract class BaseTestClass extends TestCase
 {
     protected function compile(HtmlTemplate $template): string
     {
-        return \service(TemplateCompiler::class)->compile($template);
+        return service(TemplateCompiler::class)->compile($template);
     }
 }

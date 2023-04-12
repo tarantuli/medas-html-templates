@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-class ContainerTest extends BaseTest
+class ContainerTest extends BaseTestClass
 {
     public function testContainerRemoval(): void
     {

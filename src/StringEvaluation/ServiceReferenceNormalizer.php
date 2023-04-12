@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\StringEvaluation;
 
 use Medas\HtmlTemplates\Exceptions\MultipleServicesWithShortNameException;
 use Medas\HtmlTemplates\Exceptions\NoServiceWithShortNameException;
-use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class ServiceReferenceNormalizer

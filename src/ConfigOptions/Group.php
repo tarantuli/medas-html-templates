@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
+use Medas\Core\Interfaces\ConfigGroup;
 use Medas\ServiceManager\AsSingleton;
-use Medas\ServiceManager\Attributes\Service;
-use Medas\ServiceManager\ConfigOptions\ConfigGroup;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class Group implements ConfigGroup

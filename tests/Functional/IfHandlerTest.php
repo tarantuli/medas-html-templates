@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-class IfHandlerTest extends BaseTest
+class IfHandlerTest extends BaseTestClass
 {
     public function testBasicIfTrueStatement(): void
     {

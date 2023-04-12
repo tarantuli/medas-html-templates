@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplatesTest\Functional;
 
 use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 
-class StringEvaluatorTest extends BaseTest
+class StringEvaluatorTest extends BaseTestClass
 {
     public function testBasicExpressions(): void
     {

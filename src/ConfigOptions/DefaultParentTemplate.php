@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
+use Medas\Core\Interfaces\{ConfigGroup, ConfigOption, Validator};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
 use Medas\ServiceManager\AsSingleton;
-use Medas\ServiceManager\Attributes\Service;
-use Medas\ServiceManager\ConfigOptions\{ConfigGroup, ConfigOption};
-use Medas\ServiceManager\Values\Interfaces\Unserializer;
-use Medas\ServiceManager\Values\Interfaces\Validator;
+use Medas\ServiceManager\Service;
 
 #[Service]
-class DefaultParentTemplate implements ConfigOption, Validator, Unserializer
+class DefaultParentTemplate implements ConfigOption, Validator
 {
     use AsSingleton;
 
@@ -42,7 +40,7 @@ class DefaultParentTemplate implements ConfigOption, Validator, Unserializer
         }
 
         try {
-            $service = \service($value);
+            $service = service($value);
 
             return $service instanceof HasDefaultParentTemplate;
         }
@@ -53,7 +51,7 @@ class DefaultParentTemplate implements ConfigOption, Validator, Unserializer
 
     public function unserialize(string $value): object
     {
-        return \service($value)->defaultParentTemplate();
+        return service($value)->defaultParentTemplate();
     }
 
     public function hasDefault(): bool
