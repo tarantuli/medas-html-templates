@@ -73,7 +73,7 @@ class StringEvaluatorTest extends BaseTest
         $evaluator = service(StringEvaluator::class);
 
         foreach ($tests as $string => $result) {
-            self::assertEquals($result, $evaluator->isTruthy((string) $string, []), "source '$string'");
+            self::assertEquals($result, $evaluator->isTruthy((string) $string), "source '$string'");
         }
     }
 }

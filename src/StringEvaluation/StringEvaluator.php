@@ -15,6 +15,11 @@ class StringEvaluator
     {
     }
 
+    public function isTruthy(string $string, array $variables = []): bool
+    {
+        return (bool) $this->evaluate($string, $variables);
+    }
+
     public function evaluate(string $expression, array $variables = []): mixed
     {
         $expression = $this->serviceReferenceNormalizer->normalize($expression);
@@ -25,10 +30,5 @@ class StringEvaluator
         }
 
         return eval('return ' . $expression . ';');
-    }
-
-    public function isTruthy(string $string, array $variables = []): bool
-    {
-        return (bool) $this->evaluate($string, $variables);
     }
 }
