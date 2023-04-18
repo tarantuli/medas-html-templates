@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates;
 
 use Medas\Core\Attributes\ConfigValue;
+use Medas\Core\Attributes\Service;
 use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
 use Medas\HtmlTemplates\ConfigOptions\DefaultParentTemplate;
 use Medas\HtmlTemplates\Exceptions\InvalidTemplateException;
 use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Service;
 
 #[Service]
 class TemplateCompiler

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\StringEvaluation;
 
+use Medas\Core\Attributes\Service;
 use Medas\HtmlTemplates\Exceptions\MultipleServicesWithShortNameException;
 use Medas\HtmlTemplates\Exceptions\NoServiceWithShortNameException;
-use Medas\ServiceManager\Service;
 
 #[Service]
 class ServiceReferenceNormalizer

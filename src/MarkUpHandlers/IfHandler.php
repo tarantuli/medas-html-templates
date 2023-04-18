@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\Attributes\ConfigValue;
+use Medas\Core\Attributes\Service;
 use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
 use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
-use Medas\ServiceManager\Service;
 
 #[Service]
 class IfHandler extends BaseHandler implements MarkUpHandler

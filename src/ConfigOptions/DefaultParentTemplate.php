@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
+use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\{ConfigGroup, ConfigOption, Validator};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
 use Medas\ServiceManager\AsSingleton;
-use Medas\ServiceManager\Service;
 
 #[Service]
 class DefaultParentTemplate implements ConfigOption, Validator
