@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\{ConfigGroup, ConfigOption};
-use Medas\ServiceManager\AsSingleton;
+use Medas\Core\AsSingleton;
 
 #[Service]
 class AttributePrefix implements ConfigOption

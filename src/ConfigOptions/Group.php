@@ -6,7 +6,7 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\ConfigGroup;
-use Medas\ServiceManager\AsSingleton;
+use Medas\Core\AsSingleton;
 
 #[Service]
 class Group implements ConfigGroup

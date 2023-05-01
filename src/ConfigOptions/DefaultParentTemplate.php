@@ -7,7 +7,7 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\{ConfigGroup, ConfigOption, Validator};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
-use Medas\ServiceManager\AsSingleton;
+use Medas\Core\AsSingleton;
 
 #[Service]
 class DefaultParentTemplate implements ConfigOption, Validator
