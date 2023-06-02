@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates;
 
 use Medas\Core\AsSingleton;
-use Medas\ServiceManager\{BasePackage, ServiceConfig};
+use Medas\ServiceManager\BasePackage;
 
 class HtmlTemplatesPackage extends BasePackage
 {
@@ -20,11 +20,5 @@ class HtmlTemplatesPackage extends BasePackage
     public function sourceDirectory(): string
     {
         return __DIR__;
-    }
-
-    public function initialize(ServiceConfig $config): void
-    {
-        require_once __DIR__ . '/GlobalFunctions.php';
-        parent::initialize($config);
     }
 }

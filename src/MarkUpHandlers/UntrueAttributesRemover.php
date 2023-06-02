@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
 #[Service]
 class UntrueAttributesRemover implements MarkUpHandler
 {
     public function __construct(
-        private readonly StringEvaluator $stringEvaluator,
+        private readonly InterpolationHandler $interpolationHandler,
     )
     {
     }
@@ -52,8 +51,13 @@ class UntrueAttributesRemover implements MarkUpHandler
             return;
         }
 
-        if (!$this->stringEvaluator->isTruthy($attribute->value)) {
+        $this->interpolationHandler->parseAttribute($attribute);
+
+        if (!$attribute->value) {
             $attribute->ownerElement->removeAttribute($attribute->name);
+        }
+        else {
+            $attribute->value = $attribute->name;
         }
     }
 }

@@ -53,7 +53,7 @@ class InterpolationHandler implements MarkUpHandler
         }
     }
 
-    private function parseAttribute(\DOMAttr $attribute): void
+    public function parseAttribute(\DOMAttr $attribute): void
     {
         if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $attribute->value, $matches, PREG_SET_ORDER)) {
             return;
