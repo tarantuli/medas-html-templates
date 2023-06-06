@@ -6,16 +6,19 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\{ConfigGroup, ConfigOption};
-use Medas\Core\AsSingleton;
 
 #[Service]
 class AttributePrefix implements ConfigOption
 {
-    use AsSingleton;
+    public function __construct(
+        private readonly Group $group,
+    )
+    {
+    }
 
     public function group(): ConfigGroup
     {
-        return Group::instance();
+        return $this->group;
     }
 
     public function name(): string

@@ -6,13 +6,10 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\ConfigGroup;
-use Medas\Core\AsSingleton;
 
 #[Service]
 class Group implements ConfigGroup
 {
-    use AsSingleton;
-
     public function parent(): ConfigGroup|null
     {
         return null;

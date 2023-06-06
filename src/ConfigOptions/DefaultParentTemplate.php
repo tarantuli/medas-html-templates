@@ -7,16 +7,19 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 use Medas\Core\Attributes\Service;
 use Medas\Core\Interfaces\{ConfigGroup, ConfigOption, Validator};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
-use Medas\Core\AsSingleton;
 
 #[Service]
 class DefaultParentTemplate implements ConfigOption, Validator
 {
-    use AsSingleton;
+    public function __construct(
+        private readonly Group $group,
+    )
+    {
+    }
 
     public function group(): ConfigGroup
     {
-        return Group::instance();
+        return $this->group;
     }
 
     public function name(): string
