@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\Attributes\Service;
-use Medas\ServiceManager\Cache\CacheManager;
+use Medas\Core\Interfaces\CacheManager;
 
 #[Service]
 class MarkUpHandlerManager

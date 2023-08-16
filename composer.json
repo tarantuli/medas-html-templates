@@ -11,13 +11,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "morphp/medas-service-manager": "dev-dev",
+        "morphp/medas-core": "dev-dev",
         "ext-dom": "*",
         "ext-libxml": "*"
     },
     "require-dev": {
         "morphp/medas-config-manager": "dev-dev",
         "morphp/medas-config-options": "dev-dev",
+        "morphp/medas-service-manager": "dev-dev",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
