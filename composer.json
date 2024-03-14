@@ -1,6 +1,9 @@
 {
     "name": "morphp/medas-html-templates",
     "description": "Medas HTML templates",
+    "keywords": [
+        "frontend"
+    ],
     "authors": [
         {
             "name": "Patrick Morpey",
