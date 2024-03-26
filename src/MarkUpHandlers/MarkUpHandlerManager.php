@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
-use Medas\Core\Attributes\Service;
-use Medas\Core\Interfaces\CacheManager;
+use Medas\Core\{Attributes\Service, Interfaces\CacheManager};
 
 #[Service]
 class MarkUpHandlerManager
@@ -22,7 +21,10 @@ class MarkUpHandlerManager
     /** @return MarkUpHandler[] */
     public function get(): array
     {
-        return $this->cacheManager->get()->get([static::class, 'getHandlers'], fn() => $this->findHandlers());
+        return $this->cacheManager->get()->get(
+            [static::class, 'getHandlers'],
+            fn() => $this->findHandlers()
+        );
     }
 
     private function findHandlers(): array
@@ -34,7 +36,10 @@ class MarkUpHandlerManager
         }
 
         // Sort handlers with the highest priority to the front
-        usort($this->handlers, fn(MarkUpHandler $a, MarkUpHandler $b) => -($a->priority() <=> $b->priority()));
+        usort(
+            $this->handlers,
+            fn(MarkUpHandler $a, MarkUpHandler $b) => -($a->priority() <=> $b->priority())
+        );
 
         return $this->handlers;
     }

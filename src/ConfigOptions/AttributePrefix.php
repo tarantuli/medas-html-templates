@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
-use Medas\Core\Attributes\Service;
-use Medas\Core\Interfaces\{ConfigGroup, ConfigOption};
+use Medas\Core\{Attributes\Service, Interfaces\ConfigGroup, Interfaces\ConfigOption};
 
 #[Service]
 class AttributePrefix implements ConfigOption
 {
     public function __construct(
-        private readonly Group $group,
+        private readonly HtmlTemplatesConfigGroup $group,
     )
     {
     }

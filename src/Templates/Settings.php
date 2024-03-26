@@ -6,5 +6,4 @@ namespace Medas\HtmlTemplates\Templates;
 
 class Settings
 {
-
 }

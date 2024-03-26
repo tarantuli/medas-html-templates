@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
-use Medas\Core\Attributes\ConfigValue;
-use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
-use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
-use Medas\HtmlTemplates\Templates\HtmlTemplate;
+use Medas\Core\Attributes\{ConfigValue, Service};
+use Medas\HtmlTemplates\{
+    ConfigOptions\AttributePrefix,
+    StringEvaluation\StringEvaluator,
+    Templates\HtmlTemplate
+};
 
 #[Service]
 class ForEachHandler extends BaseHandler implements MarkUpHandler
@@ -31,6 +32,7 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
     public function handle(HtmlTemplate $template): void
     {
         $this->template = $template;
+
         $this->callOnAttributes(
             $template->dom,
             $this->prefix . 'foreach',
@@ -47,7 +49,10 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
             throw new \Exception('no w-as attribute found');
         }
 
-        $iterator = $this->stringEvaluator->evaluate($forEachAttribute->value, $this->template->variables);
+        $iterator = $this->stringEvaluator->evaluate(
+            $forEachAttribute->value,
+            $this->template->variables
+        );
 
         if (!is_iterable($iterator)) {
             throw new \Exception('foreach attribute does not resolve to an iterable result');
@@ -58,16 +63,12 @@ class ForEachHandler extends BaseHandler implements MarkUpHandler
         foreach ($iterator as $value) {
             $variableName = 'a' . bin2hex(random_bytes(8));
             $this->template->variables[$variableName] = $value;
-
             $newBlock = $element->cloneNode(true);
+
             $newBlock->removeAttribute($this->prefix . 'foreach');
             $newBlock->removeAttribute($this->prefix . 'as');
 
-            $this->replaceVariableInText(
-                $newBlock,
-                $search,
-                '$' . $variableName
-            );
+            $this->replaceVariableInText($newBlock, $search, '$' . $variableName);
 
             $element->parentNode->insertBefore($newBlock, $element);
         }

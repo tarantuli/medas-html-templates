@@ -4,28 +4,24 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates;
 
-use Medas\Core\Attributes\ConfigValue;
-use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
-use Medas\HtmlTemplates\ConfigOptions\DefaultParentTemplate;
-use Medas\HtmlTemplates\Exceptions\InvalidTemplateException;
-use Medas\HtmlTemplates\MarkUpHandlers\MarkUpHandlerManager;
-use Medas\HtmlTemplates\Templates\HtmlTemplate;
+use Medas\Core\Attributes\{ConfigValue, Service};
 
 #[Service]
 class TemplateCompiler
 {
     public function __construct(
-        private readonly MarkUpHandlerManager $markUpHandlerManager,
-        #[ConfigValue(DefaultParentTemplate::class)]
-        private readonly HtmlTemplate|null    $defaultParent,
-        #[ConfigValue(AttributePrefix::class)]
-        private readonly string               $prefix,
+        private readonly MarkUpHandlers\MarkUpHandlerManager $markUpHandlerManager,
+
+        #[ConfigValue(ConfigOptions\DefaultParentTemplate::class)]
+        private readonly Templates\HtmlTemplate|null         $defaultParent,
+
+        #[ConfigValue(ConfigOptions\AttributePrefix::class)]
+        private readonly string                              $prefix,
     )
     {
     }
 
-    public function compile(HtmlTemplate $template): string
+    public function compile(Templates\HtmlTemplate $template): string
     {
         $this->setParentTemplate($template);
 
@@ -37,21 +33,14 @@ class TemplateCompiler
         return $this->getXml($template->dom);
     }
 
-    private function setParentTemplate(HtmlTemplate $template): void
+    private function setParentTemplate(Templates\HtmlTemplate $template): void
     {
         if ($template->parent === null && $this->defaultParent !== null) {
             $template->parent = $this->defaultParent;
         }
     }
 
-    private function applyMarkUpHandlers(HtmlTemplate $template): void
-    {
-        foreach ($this->markUpHandlerManager->get() as $markUpHandler) {
-            $markUpHandler->handle($template);
-        }
-    }
-
-    private function loadTemplateXml(HtmlTemplate $template): void
+    private function loadTemplateXml(Templates\HtmlTemplate $template): void
     {
         $template->dom->preserveWhiteSpace = false;
         $template->dom->formatOutput = true;
@@ -66,12 +55,19 @@ class TemplateCompiler
                     $template->dom->loadXML('<' . $this->prefix . 'container>' . $template->template . '</' . $this->prefix . 'container>');
                 }
                 catch (\Exception) {
-                    throw new InvalidTemplateException($template->template);
+                    throw new Exceptions\InvalidTemplateException($template->template);
                 }
             }
             else {
-                throw new InvalidTemplateException($template->template);
+                throw new Exceptions\InvalidTemplateException($template->template);
             }
+        }
+    }
+
+    private function applyMarkUpHandlers(Templates\HtmlTemplate $template): void
+    {
+        foreach ($this->markUpHandlerManager->get() as $markUpHandler) {
+            $markUpHandler->handle($template);
         }
     }
 

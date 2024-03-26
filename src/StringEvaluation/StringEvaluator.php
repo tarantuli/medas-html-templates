@@ -26,7 +26,7 @@ class StringEvaluator
 
         // Define the variables in this local scope
         foreach ($variables as $name => $value) {
-            $$name = $value;
+            $ $name = $value;
         }
 
         return eval('return ' . $expression . ';');

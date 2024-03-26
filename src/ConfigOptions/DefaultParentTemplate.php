@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\ConfigOptions;
 
-use Medas\Core\Attributes\Service;
-use Medas\Core\Interfaces\{ConfigGroup, ConfigOption, Validator};
+use Medas\Core\{
+    Attributes\Service,
+    Interfaces\ConfigGroup,
+    Interfaces\ConfigOption,
+    Interfaces\Validator
+};
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
 
 #[Service]
 class DefaultParentTemplate implements ConfigOption, Validator
 {
     public function __construct(
-        private readonly Group $group,
+        private readonly HtmlTemplatesConfigGroup $group,
     )
     {
     }

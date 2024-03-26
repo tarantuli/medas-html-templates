@@ -23,7 +23,11 @@ abstract class BaseHandler
     {
         if ($node->hasAttributes()) {
             foreach ($node->attributes as $attribute) {
-                $attribute->value = $this->replaceTextInExpressions($search, $replace, $attribute->value);
+                $attribute->value = $this->replaceTextInExpressions(
+                    $search,
+                    $replace,
+                    $attribute->value
+                );
             }
         }
 
@@ -40,6 +44,7 @@ abstract class BaseHandler
                     $oldText = $childNode->textContent;
                     $newText = $this->replaceTextInExpressions($search, $replace, $oldText);
                     $newTextNode = $node->ownerDocument->createTextNode($newText);
+
                     $node->replaceChild($newTextNode, $childNode);
                 }
                 else {

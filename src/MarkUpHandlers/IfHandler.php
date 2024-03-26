@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
-use Medas\Core\Attributes\ConfigValue;
-use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\ConfigOptions\AttributePrefix;
-use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
-use Medas\HtmlTemplates\Templates\HtmlTemplate;
+use Medas\Core\Attributes\{ConfigValue, Service};
+use Medas\HtmlTemplates\{
+    ConfigOptions\AttributePrefix,
+    StringEvaluation\StringEvaluator,
+    Templates\HtmlTemplate
+};
 
 #[Service]
 class IfHandler extends BaseHandler implements MarkUpHandler
@@ -32,11 +33,7 @@ class IfHandler extends BaseHandler implements MarkUpHandler
     {
         $this->template = $template;
 
-        $this->callOnAttributes(
-            $template->dom,
-            $this->prefix . 'if',
-            $this->processAttribute(...)
-        );
+        $this->callOnAttributes($template->dom, $this->prefix . 'if', $this->processAttribute(...));
     }
 
     protected function processAttribute(\DOMElement $element, \DOMAttr $attribute): void

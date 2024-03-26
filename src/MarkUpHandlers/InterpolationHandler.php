@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\StringEvaluation\StringEvaluator;
-use Medas\HtmlTemplates\Templates\HtmlTemplate;
+use Medas\HtmlTemplates\{StringEvaluation\StringEvaluator, Templates\HtmlTemplate};
 
 #[Service]
 class InterpolationHandler implements MarkUpHandler
@@ -53,6 +52,25 @@ class InterpolationHandler implements MarkUpHandler
         }
     }
 
+    private function parseTextNode(\DOMNode $parentNode, \DOMNode $childNode): void
+    {
+        if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $childNode->textContent, $matches, PREG_SET_ORDER)) {
+            return;
+        }
+
+        $newText = $this->evaluateMatches($matches, $childNode->textContent);
+        $fragment = $parentNode->ownerDocument->createDocumentFragment();
+
+        try {
+            $fragment->appendXML($newText);
+        }
+        catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage() . ' in ' . $newText);
+        }
+
+        $parentNode->replaceChild($fragment, $childNode);
+    }
+
     public function parseAttribute(\DOMAttr $attribute): void
     {
         if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $attribute->value, $matches, PREG_SET_ORDER)) {
@@ -62,28 +80,14 @@ class InterpolationHandler implements MarkUpHandler
         $attribute->value = $this->evaluateMatches($matches, $attribute->value);
     }
 
-    private function parseTextNode(\DOMNode $parentNode, \DOMNode $childNode): void
-    {
-        if (!preg_match_all('/\{\{(?<expression>.*?)}}/', $childNode->textContent, $matches, PREG_SET_ORDER)) {
-            return;
-        }
-
-        $newText = $this->evaluateMatches($matches, $childNode->textContent);
-
-        $fragment = $parentNode->ownerDocument->createDocumentFragment();
-        try {
-            $fragment->appendXML($newText);
-        }
-        catch (\Exception $exception) {
-            throw new \Exception($exception->getMessage() . ' in ' . $newText);
-        }
-        $parentNode->replaceChild($fragment, $childNode);
-    }
-
     private function evaluateMatches($matches, mixed $newText): mixed
     {
         foreach ($matches as $match) {
-            $replace = $this->stringEvaluator->evaluate($match['expression'], $this->template->variables);
+            $replace = $this->stringEvaluator->evaluate(
+                $match['expression'],
+                $this->template->variables
+            );
+
             $newText = str_replace($match[0], (string) $replace, $newText);
         }
 
