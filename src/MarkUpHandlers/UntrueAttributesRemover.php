@@ -8,10 +8,10 @@ use Medas\Core\Attributes\Service;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
 #[Service]
-class UntrueAttributesRemover implements MarkUpHandler
+readonly class UntrueAttributesRemover implements MarkUpHandler
 {
     public function __construct(
-        private readonly InterpolationHandler $interpolationHandler,
+        private InterpolationHandler $interpolationHandler,
     )
     {
     }

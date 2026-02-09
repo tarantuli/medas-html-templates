@@ -26,7 +26,7 @@ class ParentHandler implements MarkUpHandler
 
         $parentDom->loadXML($template->parent->template);
 
-        // Find the placeholder and replace it by the template DOM
+        // Find the placeholder and replace it with the template DOM
         $placeholder = $parentDom->getElementsByTagName($template->parentPlaceholderTag)->item(0);
 
         if (!$placeholder) {

@@ -17,9 +17,10 @@ class IfHandler extends BaseHandler implements MarkUpHandler
     private HtmlTemplate $template;
 
     public function __construct(
+        private readonly StringEvaluator $stringEvaluator,
+
         #[ConfigValue(AttributePrefix::class)]
         private readonly string          $prefix,
-        private readonly StringEvaluator $stringEvaluator,
     )
     {
     }

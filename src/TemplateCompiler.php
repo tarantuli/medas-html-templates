@@ -7,16 +7,16 @@ namespace Medas\HtmlTemplates;
 use Medas\Core\Attributes\{ConfigValue, Service};
 
 #[Service]
-class TemplateCompiler
+readonly class TemplateCompiler
 {
     public function __construct(
-        private readonly MarkUpHandlers\MarkUpHandlerManager $markUpHandlerManager,
+        private MarkUpHandlers\MarkUpHandlerManager $markUpHandlerManager,
 
         #[ConfigValue(ConfigOptions\DefaultParentTemplate::class)]
-        private readonly Templates\HtmlTemplate|null         $defaultParent,
+        private Templates\HtmlTemplate|null         $defaultParent,
 
         #[ConfigValue(ConfigOptions\AttributePrefix::class)]
-        private readonly string                              $prefix,
+        private string                              $prefix,
     )
     {
     }

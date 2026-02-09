@@ -7,10 +7,10 @@ namespace Medas\HtmlTemplates\StringEvaluation;
 use Medas\Core\Attributes\Service;
 
 #[Service]
-class StringEvaluator
+readonly class StringEvaluator
 {
     public function __construct(
-        private readonly ServiceReferenceNormalizer $serviceReferenceNormalizer,
+        private ServiceReferenceNormalizer $serviceReferenceNormalizer,
     )
     {
     }

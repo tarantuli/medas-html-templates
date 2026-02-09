@@ -7,10 +7,10 @@ namespace Medas\HtmlTemplates\ConfigOptions;
 use Medas\Core\{Attributes\Service, Interfaces\ConfigGroup, Interfaces\ConfigOption};
 
 #[Service]
-class AttributePrefix implements ConfigOption
+readonly class AttributePrefix implements ConfigOption
 {
     public function __construct(
-        private readonly HtmlTemplatesConfigGroup $group,
+        private HtmlTemplatesConfigGroup $group,
     )
     {
     }

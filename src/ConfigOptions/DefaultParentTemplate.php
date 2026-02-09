@@ -13,10 +13,10 @@ use Medas\Core\{
 use Medas\HtmlTemplates\Templates\HasDefaultParentTemplate;
 
 #[Service]
-class DefaultParentTemplate implements ConfigOption, Validator
+readonly class DefaultParentTemplate implements ConfigOption, Validator
 {
     public function __construct(
-        private readonly HtmlTemplatesConfigGroup $group,
+        private HtmlTemplatesConfigGroup $group,
     )
     {
     }
@@ -66,7 +66,7 @@ class DefaultParentTemplate implements ConfigOption, Validator
         return false;
     }
 
-    public function default(): mixed
+    public function default(): null
     {
         return null;
     }
