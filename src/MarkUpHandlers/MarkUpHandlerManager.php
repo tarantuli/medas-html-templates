@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\{Attributes\Service, Interfaces\CacheManager};
+use Medas\ServiceManager\Mapping\ImplementorFinder;
 
 #[Service]
-class MarkUpHandlerManager
+readonly class MarkUpHandlerManager
 {
-    /** @var MarkUpHandler[] $handlers */
-    private array $handlers;
-
     public function __construct(
-        private readonly CacheManager $cacheManager,
+        private CacheManager      $cacheManager,
+        private ImplementorFinder $implementorFinder,
     )
     {
     }
@@ -29,33 +28,14 @@ class MarkUpHandlerManager
 
     private function findHandlers(): array
     {
-        $this->handlers = [];
-
-        foreach (sm()->getServiceClassNames() as $className) {
-            $this->processClass($className);
-        }
+        $handlers = $this->implementorFinder->find(MarkUpHandler::class);
 
         // Sort handlers with the highest priority to the front
         usort(
-            $this->handlers,
+            $handlers,
             fn(MarkUpHandler $a, MarkUpHandler $b) => -($a->priority() <=> $b->priority())
         );
 
-        return $this->handlers;
-    }
-
-    private function processClass(string $className): void
-    {
-        $class = new \ReflectionClass($className);
-
-        if ($class->isAbstract()) {
-            return;
-        }
-
-        if (!$class->implementsInterface(MarkUpHandler::class)) {
-            return;
-        }
-
-        $this->handlers[] = sm()->resolve($className);
+        return $handlers;
     }
 }
