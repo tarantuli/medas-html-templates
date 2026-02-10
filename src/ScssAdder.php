@@ -17,9 +17,10 @@ readonly class ScssAdder
 
     public function addScss(Templates\HtmlTemplate $template, string $id, string $scss): void
     {
-        $template->variables[sprintf('<style id="%s"></style>', $id)] = sprintf(
-            "<style>%s</style>",
-            $this->scssToCss->convert($scss)
+        $template->template = str_replace(
+            sprintf('<style id="%s"></style>', $id),
+            sprintf("<style>%s</style>", $this->scssToCss->convert($scss)),
+            $template->template
         );
     }
 }
