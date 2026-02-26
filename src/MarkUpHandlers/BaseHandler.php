@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
-abstract class BaseHandler
+readonly abstract class BaseHandler
 {
     protected function callOnAttributes(\DOMNode $node, string $name, \Closure $closure): void
     {
@@ -54,7 +54,7 @@ abstract class BaseHandler
         }
     }
 
-    private function replaceTextInExpressions(string $pattern, string $replace, mixed $subject): string
+    private function replaceTextInExpressions(string $pattern, string $replace, string $subject): string
     {
         if (!preg_match_all('/{{.+?}}/', $subject, $expressions)) {
             return $subject;

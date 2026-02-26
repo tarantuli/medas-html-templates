@@ -8,11 +8,11 @@ use Medas\Core\Attributes\{ConfigValue, Service};
 use Medas\HtmlTemplates\{ConfigOptions\AttributePrefix, Templates\HtmlTemplate};
 
 #[Service]
-class ContainerHandler extends BaseHandler implements MarkUpHandler
+readonly class ContainerHandler extends BaseHandler implements MarkUpHandler
 {
     public function __construct(
         #[ConfigValue(AttributePrefix::class)]
-        private readonly string $prefix,
+        private string $prefix,
     )
     {
     }

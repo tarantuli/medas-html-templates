@@ -20,6 +20,14 @@ readonly class StringEvaluator
         return (bool) $this->evaluate($string, $variables);
     }
 
+    /**
+     * Evaluates a PHP expression string in a sandboxed local scope.
+     *
+     * ⚠ SECURITY WARNING: This method uses eval(). Template expressions and
+     * variables MUST originate from trusted sources (i.e., developer-written
+     * templates and server-side data only). Never pass user-supplied strings
+     * directly as expressions or variable values without sanitization.
+     */
     public function evaluate(string $expression, array $variables = []): mixed
     {
         $expression = $this->serviceReferenceNormalizer->normalize($expression);

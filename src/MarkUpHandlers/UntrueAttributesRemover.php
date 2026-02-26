@@ -23,14 +23,14 @@ readonly class UntrueAttributesRemover implements MarkUpHandler
 
     public function handle(HtmlTemplate $template): void
     {
-        $this->processNode($template->dom);
+        $this->processNode($template->dom, $template->variables);
     }
 
-    private function processNode(\DOMNode $node): void
+    private function processNode(\DOMNode $node, array $variables): void
     {
         if ($node->hasAttributes()) {
             foreach ($node->attributes as $attribute) {
-                $this->parseAttribute($attribute);
+                $this->parseAttribute($attribute, $variables);
             }
         }
 
@@ -40,18 +40,18 @@ readonly class UntrueAttributesRemover implements MarkUpHandler
 
         foreach ($node->childNodes as $childNode) {
             if ($childNode->nodeType !== XML_TEXT_NODE) {
-                $this->processNode($childNode);
+                $this->processNode($childNode, $variables);
             }
         }
     }
 
-    private function parseAttribute(\DOMAttr $attribute): void
+    private function parseAttribute(\DOMAttr $attribute, array $variables): void
     {
         if (!in_array($attribute->name, ['checked', 'selected'])) {
             return;
         }
 
-        $this->interpolationHandler->parseAttribute($attribute);
+        $this->interpolationHandler->parseAttribute($attribute, $variables);
 
         if (!$attribute->value) {
             $attribute->ownerElement->removeAttribute($attribute->name);

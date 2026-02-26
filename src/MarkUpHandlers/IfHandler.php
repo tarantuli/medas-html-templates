@@ -12,15 +12,13 @@ use Medas\HtmlTemplates\{
 };
 
 #[Service]
-class IfHandler extends BaseHandler implements MarkUpHandler
+readonly class IfHandler extends BaseHandler implements MarkUpHandler
 {
-    private HtmlTemplate $template;
-
     public function __construct(
-        private readonly StringEvaluator $stringEvaluator,
+        private StringEvaluator $stringEvaluator,
 
         #[ConfigValue(AttributePrefix::class)]
-        private readonly string          $prefix,
+        private string          $prefix,
     )
     {
     }
@@ -32,14 +30,21 @@ class IfHandler extends BaseHandler implements MarkUpHandler
 
     public function handle(HtmlTemplate $template): void
     {
-        $this->template = $template;
-
-        $this->callOnAttributes($template->dom, $this->prefix . 'if', $this->processAttribute(...));
+        $this->callOnAttributes(
+            $template->dom,
+            $this->prefix . 'if',
+            fn(
+                \DOMElement $element,
+                \DOMAttr $attribute) => $this->processAttribute($template,
+                $element,
+                $attribute
+            )
+        );
     }
 
-    protected function processAttribute(\DOMElement $element, \DOMAttr $attribute): void
+    protected function processAttribute(HtmlTemplate $template, \DOMElement $element, \DOMAttr $attribute): void
     {
-        if ($this->stringEvaluator->isTruthy($attribute->value, $this->template->variables)) {
+        if ($this->stringEvaluator->isTruthy($attribute->value, $template->variables)) {
             $element->removeAttribute($attribute->name);
         }
         else {

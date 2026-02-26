@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
 use Medas\Core\Attributes\Service;
-use Medas\HtmlTemplates\{Exceptions\PlaceholderTagNotFoundException, Templates\HtmlTemplate};
+use Medas\HtmlTemplates\{
+    Exceptions\InvalidTemplateException,
+    Exceptions\PlaceholderTagNotFoundException,
+    Templates\HtmlTemplate
+};
 
 #[Service]
 class ParentHandler implements MarkUpHandler
@@ -23,8 +27,11 @@ class ParentHandler implements MarkUpHandler
 
         // Turn the parent template into a DOM document
         $parentDom = new \DOMDocument();
+        $loaded = @ $parentDom->loadXML($template->parent->template);
 
-        $parentDom->loadXML($template->parent->template);
+        if ($loaded === false) {
+            throw new InvalidTemplateException($template->parent->template);
+        }
 
         // Find the placeholder and replace it with the template DOM
         $placeholder = $parentDom->getElementsByTagName($template->parentPlaceholderTag)->item(0);
@@ -44,7 +51,7 @@ class ParentHandler implements MarkUpHandler
         // From now on, use the parent DOM document as the template
         $template->dom = $parentDom;
 
-        // Combine the variables
+        // Combine the variables (child variables take precedence over parent variables)
         $template->variables = array_merge($template->parent->variables, $template->variables);
     }
 }

@@ -10,11 +10,10 @@ use ScssPhp\ScssPhp\Compiler;
 #[Service]
 readonly class ScssToCss
 {
-    private Compiler $compiler;
-
-    public function __construct()
+    public function __construct(
+        private Compiler $compiler = new Compiler(),
+    )
     {
-        $this->compiler = new Compiler();
     }
 
     public function convert(string $scss): string
