@@ -5,15 +5,15 @@ declare(strict_types=1);
 use Medas\ConfigManager\ConfigManagerPackage;
 use Medas\ConfigOptions\ConfigOptionsPackage;
 use Medas\HtmlTemplates\HtmlTemplatesPackage;
-use Medas\ServiceManager\ServiceConfig;
-use Medas\ServiceManager\ServiceManager;
+use Medas\ObjectInstantiator\ObjectInstantiator;
+use Medas\ServiceManager\{ServiceConfigBuilder, ServiceManager};
 
 chdir(__DIR__);
 
 require_once 'vendor/autoload.php';
 
-new ServiceManager(function (): ServiceConfig {
-    $config = new ServiceConfig();
+new ServiceManager(function (): ServiceConfigBuilder {
+    $config = new ServiceConfigBuilder(ObjectInstantiator::class);
 
     $config->addPackages([
         HtmlTemplatesPackage::instance(),
