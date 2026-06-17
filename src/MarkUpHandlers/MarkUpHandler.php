@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Medas\HtmlTemplates\MarkUpHandlers;
 
+use Medas\Core\Interfaces\DeclaresPriority;
 use Medas\HtmlTemplates\Templates\HtmlTemplate;
 
-interface MarkUpHandler
+interface MarkUpHandler extends DeclaresPriority
 {
-    public function priority(): int;
-
     public function handle(HtmlTemplate $template): void;
 }
